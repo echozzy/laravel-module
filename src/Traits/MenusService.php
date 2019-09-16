@@ -24,8 +24,8 @@ trait MenusService
             $where = [
                 ['p_id', '=', '0'],
             ];
-            $menus = AdminMenu::where($where)->get();
-            $menus = $this->getChildMenus($menus)->toArray();
+            $menus = AdminMenu::where($where)->orderBy('list_order', 'asc')->get();
+            $menus = $this->getChildMenus($menus);
             return $menus;
         });
         return $menus;
@@ -54,7 +54,7 @@ trait MenusService
     protected function getChildMenus($menus)
     {
         foreach ($menus as $key => $menu) {
-            $child_menus = AdminMenu::where('p_id', $menu['id'])->get()->toArray();
+            $child_menus = AdminMenu::where('p_id', $menu['id'])->orderBy('list_order', 'asc')->get();
             if ($child_menus) {
                 // 无线级
                 // foreach ($child_menus as $key => $val) {
