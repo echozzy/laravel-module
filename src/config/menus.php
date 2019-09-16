@@ -1,8 +1,8 @@
 <?php
 /** .-------------------------------------------------------------------
- * |      Site: www.hdcms.com  www.houdunren.com
- * |      Date: 2018/7/2 上午12:54
- * |    Author: 向军大叔 <2300071698@qq.com>
+ * |      Site: www.zhouzy365.com
+ * |      Date: 2019/9/10 下午3:13
+ * |    Author: zzy <348858954@qq.com>
  * '-------------------------------------------------------------------*/
 /**
  * 后台菜单配置
@@ -20,7 +20,7 @@ return [
         'permission' => '权限标识',
         "url" => "链接地址",
         "menus"      => [
-            ["title" => "网站配置","icon"=> "fa fa-navicon", "permission" => "权限标识", "url" => "链接地址"],
+            ["title" => "网站配置", "icon"=> "fa fa-navicon", "permission" => "权限标识", "url" => "链接地址"],
         ],
     ],
 ];

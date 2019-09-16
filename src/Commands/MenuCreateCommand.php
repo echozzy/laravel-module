@@ -36,17 +36,6 @@ class MenuCreateCommand extends Command
     {
         foreach ((array) $this->getModules() as $module) {
             $config = \ZyModule::config($module . '.menus');
-            // foreach ((array) $config as $group) {
-                // $this->insert_menus($config);
-                // if (!$this->menusIsExists($group)) {
-                //     $child_menus = empty($group['menus']) ? '' : $group['menus'];
-                //     if (isset($group['menus'])) {
-                //         unset($group['menus']);
-                //     }
-                //     AdminMenu::create($group);
-                //     if ($child_menus) { }
-                // }
-            // }
             if($this->insert_menus($config)){
                 $this->info("{$module} menus install successFully");
             }else{
