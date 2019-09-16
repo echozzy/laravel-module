@@ -18,7 +18,7 @@ class CreateMenuTables extends Migration
             $table->increments('id');
             $table->string('title','30')->comment('菜单标题');
             $table->unsignedInteger('p_id')->comment('父级ID');
-            $table->string('icon','20')->comment('菜单图标');
+            $table->string('icon','20')->nullable()->comment('菜单图标');
             $table->string('permission','30')->comment('菜单权限标识');
             $table->string('url')->comment('链接地址');
             $table->timestamps();
