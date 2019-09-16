@@ -69,6 +69,8 @@ trait MenusService
 
                 // 二级
                 $menus[$key]['child'] = $child_menus;
+            }else{
+                $menus[$key]['child'] = '';
             }
         }
         return $menus;
