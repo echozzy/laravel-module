@@ -55,19 +55,15 @@ trait MenusService
         foreach ($menus as $key => $menu) {
             $child_menus = AdminMenu::where('p_id', $menu['id'])->orderBy('list_order', 'asc')->get();
             if ($child_menus) {
-                // 无线级
-                // foreach ($child_menus as $key => $val) {
-                //     $status = AdminMenu::where('p_id', $val['id'])->first();
-                //     if ($status) {
-                //         $childs[] = $this->getChildMenus($val);
-                //     } else {
-                //         $childs[] = $val;
-                //     }
-                // }
-                // $menus[$key]['child'] = $childs;
-
+                // 无限级
+                $menus[$key]['children'] = $this->getChildMenus($child_menus);;
+                
                 // 二级
-                $menus[$key]['children'] = $child_menus;
+                // 列表展示需要children
+                // foreach ($child_menus as $k => $value) {
+                //     $child_menus[$k]['children']= '';
+                // }
+                // $menus[$key]['children'] = $child_menus;
             }else{
                 $menus[$key]['children'] = '';
             }
