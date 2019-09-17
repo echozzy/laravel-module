@@ -1,5 +1,4 @@
 <?php
-
 /** .-------------------------------------------------------------------
  * |      Site: www.zhouzy365.com
  * |      Date: 2019/9/10 下午3:13
@@ -68,9 +67,9 @@ trait MenusService
                 // $menus[$key]['child'] = $childs;
 
                 // 二级
-                $menus[$key]['child'] = $child_menus;
+                $menus[$key]['children'] = $child_menus;
             }else{
-                $menus[$key]['child'] = '';
+                $menus[$key]['children'] = '';
             }
         }
         return $menus;
