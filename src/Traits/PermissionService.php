@@ -1,13 +1,16 @@
 <?php
+
 /** .-------------------------------------------------------------------
  * |      Site: www.zhouzy365.com
  * |      Date: 2019/9/10 下午3:13
  * |    Author: zzy <348858954@qq.com>
  * '-------------------------------------------------------------------*/
+
 namespace Zzy\Module\Traits;
 
 use Module;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\Cache;
 
 /**
  * Trait PermissionService
@@ -16,6 +19,25 @@ use Spatie\Permission\Models\Permission;
  */
 trait PermissionService
 {
+
+    /**
+     * 获取所有权限
+     *
+     * @return mixed
+     */
+    public function getPermissions()
+    {
+        $permissions = Cache::remember('admin.permission', now()->addMinutes(24 * 60), function () {
+            $where = [
+                ['p_id', '=', '0'],
+            ];
+            $permissions = Permission::where($where)->get();
+            $permissions = $this->getChildPermissions($permissions);
+            return $permissions;
+        });
+        return $permissions;
+    }
+
     /**
      * 验证权限
      *
@@ -36,7 +58,7 @@ trait PermissionService
                 ['guard_name', '=', $guard],
             ];
 
-            return (bool)\DB::table('permissions')->where($where)->first();
+            return (bool) \DB::table('permissions')->where($where)->first();
         });
 
         return auth()->user()->hasAnyPermission($data);
@@ -67,7 +89,7 @@ trait PermissionService
         foreach ($modules as $module) {
             $permissions[] = [
                 'module' => $module,
-                'config' => $this->config($module->getName().'.config'),
+                'config' => $this->config($module->getName() . '.config'),
                 'rules'  => $this->filterByGuard($module, $guard),
             ];
         }
@@ -83,7 +105,7 @@ trait PermissionService
      */
     protected function filterByGuard($module, $guard)
     {
-        $data = $config = \ZyModule::config($module.'.permission');
+        $data = $config = \ZyModule::config($module . '.permission');
         foreach ($config as $k => $group) {
             foreach ($group['permissions'] as $n => $permission) {
                 if ($permission['guard'] != $guard) {
@@ -93,5 +115,24 @@ trait PermissionService
         }
 
         return $data;
+    }
+
+    /**
+     * 获取所有权限的子权限
+     *
+     * @return array
+     */
+    protected function getChildPermissions($permissions)
+    {
+        foreach ($permissions as $key => $permission) {
+            $child_permissions = Permission::where('p_id', $permission['id'])->get();
+            if ($child_permissions) {
+                // 无限级
+                $permissions[$key]['children'] = $this->getChildMenus($child_permissions);;
+            } else {
+                $permissions[$key]['children'] = '';
+            }
+        }
+        return $permissions;
     }
 }

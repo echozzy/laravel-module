@@ -36,14 +36,11 @@ class PermissionCreateCommand extends Command
         app()['cache']->forget('spatie.permission.cache');
         foreach ((array)$this->getModules() as $module) {
             $config = \ZyModule::config($module.'.permission');
-            foreach ((array)$config as $group) {
-                foreach ((array)$group['permissions'] as $permission) {
-                    if ( ! $this->permissionIsExists($permission)) {
-                        Permission::create(['name' => $permission['name'], 'guard_name' => $permission['guard']]);
-                    }
-                }
+            if($this->insert_permission($config)){
+                $this->info("{$module} permission install successFully");
+            }else{
+                $this->error("{$module} permission install fail");
             }
-            $this->info("{$module} permission install successFully");
         }
     }
 
@@ -58,7 +55,7 @@ class PermissionCreateCommand extends Command
     {
         $where = [
             ['name', '=', $permission['name']],
-            ['guard_name', '=', $permission['guard']],
+            ['guard_name', '=', $permission['guard_name']],
         ];
 
         return (bool)Permission::where($where)->first();
@@ -79,5 +76,37 @@ class PermissionCreateCommand extends Command
         }
 
         return $modules;
+    }
+
+    /**
+     * 插入权限
+     *
+     * @return bool
+     */
+    protected function insert_permission(array $groups)
+    {
+        foreach ((array) $groups as $group) {
+            if (!$this->permissionIsExists($group)) {
+                $child_permissions = empty($group['permissions']) ? '' : $group['permissions'];
+                if (isset($group['permissions'])) {
+                    unset($group['permissions']);
+                }
+                $p_id = Permission::create($group)->id;
+                // 添加父级ID
+                if($p_id){
+                    if ($child_permissions) {
+                        foreach ($child_permissions as $key => $value) {
+                            $child_permissions[$key]['p_id'] = $p_id;
+                        }
+                        $this->insert_permission($child_permissions);
+                    }
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }
+        return true;
     }
 }

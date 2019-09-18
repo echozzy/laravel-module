@@ -10,9 +10,15 @@
  */
 return [
     [
-        'group' => '文章管理',
+        'title' => '权限管理',
+        'p_id' => 0,
+        'name' => 'Modules\Admin\Http\Controllers\RoleController',
+        'guard_name' => 'admin',
         'permissions' => [
-            ['title' => '添加栏目', 'name' => 'Modules\Admin\Http\Controllers\CategoryController@create', 'guard' => 'admin'],
+            ['title' => '管理员列表', 'name' => 'Modules\Admin\Http\Controllers\RoleController@list', 'guard_name' => 'admin'],
+            ['title' => '管理员日志', 'name' => 'Modules\Admin\Http\Controllers\RoleController@log', 'guard_name' => 'admin'],
+            ['title' => '角色管理', 'name' => 'Modules\Admin\Http\Controllers\RoleController@role', 'guard_name' => 'admin'],
+            ['title' => '权限列表', 'name' => 'Modules\Admin\Http\Controllers\RoleController@permission', 'guard_name' => 'admin']
         ],
     ],
 ];
