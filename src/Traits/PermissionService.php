@@ -72,7 +72,7 @@ trait PermissionService
     public function isWebMaster($guard = 'admin'): bool
     {
         $relation = auth($guard)->user()->roles();
-        $has      = $relation->where('roles.name', config('hd_module.webmaster'))->first();
+        $has      = $relation->where('roles.name', 'Administrators')->first();
 
         return boolval($has);
     }

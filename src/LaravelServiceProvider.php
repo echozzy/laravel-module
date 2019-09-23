@@ -44,11 +44,6 @@ class LaravelServiceProvider extends ServiceProvider
         ], 'migrations');
 
         $this->loadMigrationsFrom(__DIR__.'/Migrations');
-        
-        //配置文件
-        $this->publishes([
-            __DIR__.'/zzy_module.php' => config_path('zzy_module.php'),
-        ]);
     }
 
     /**
