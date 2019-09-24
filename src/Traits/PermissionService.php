@@ -60,7 +60,6 @@ trait PermissionService
 
             return (bool) \DB::table('permissions')->where($where)->first();
         });
-
         return auth()->user()->hasAnyPermission($data);
     }
 
@@ -128,7 +127,7 @@ trait PermissionService
             $child_permissions = Permission::where('p_id', $permission['id'])->get();
             if ($child_permissions) {
                 // 无限级
-                $permissions[$key]['children'] = $this->getChildMenus($child_permissions);;
+                $permissions[$key]['children'] = $this->getChildPermissions($child_permissions);
             } else {
                 $permissions[$key]['children'] = '';
             }

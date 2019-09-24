@@ -17,13 +17,13 @@ return [
         "title"      => "系统管理",
         "p_id"        => 0,//父级ID
         "icon"       => "fa fa-cogs",
-        'permission' => 'Admin',
+        'permission' => 'AdminController',
         "url" => "链接地址",
         "menus"      => [
-            ["title" => "网站信息", "icon"=> "fa fa-navicon","permission" => "Admin::config-site", "url" => "链接地址"],
-            ["title" => "邮箱配置", "icon"=> "fa fa-navicon","permission" => "Admin::config-email", "url" => "链接地址"],
-            ["title" => "友情链接", "icon"=> "fa fa-navicon","permission" => "Admin::config-link", "url" => "链接地址"],
-            ["title" => "后台菜单", "icon"=> "fa fa-navicon","permission" => "Admin::config-menu", "url" => "/admin/menu"],
+            ["title" => "网站信息", "icon"=> "fa fa-navicon","permission" => "AdminController@config", "url" => "链接地址"],
+            ["title" => "邮箱配置", "icon"=> "fa fa-navicon","permission" => "AdminController@email", "url" => "链接地址"],
+            ["title" => "友情链接", "icon"=> "fa fa-navicon","permission" => "AdminController@link", "url" => "链接地址"],
+            ["title" => "后台菜单", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\MenuController@index", "url" => "/admin/menu"],
         ],
     ],
     [
@@ -33,10 +33,10 @@ return [
         'permission' => 'Permission',
         "url" => "链接地址",
         "menus"      => [
-            ["title" => "管理员列表", "icon"=> "fa fa-navicon", "permission" => "Permission::list", "url" => "链接地址"],
-            ["title" => "管理员日志", "icon"=> "fa fa-navicon", "permission" => "Permission::log", "url" => "链接地址"],
-            ["title" => "角色管理", "icon"=> "fa fa-navicon", "permission" => "Permission::role", "url" => "/admin/role"],
-            ["title" => "权限列表", "icon"=> "fa fa-navicon", "permission" => "Permission::permissions", "url" => "/admin/permission"],
+            ["title" => "管理员列表", "icon"=> "fa fa-navicon", "permission" => "PermissionController@user_list", "url" => "链接地址"],
+            ["title" => "管理员日志", "icon"=> "fa fa-navicon", "permission" => "PermissionController@log", "url" => "链接地址"],
+            ["title" => "角色管理", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\RoleController@index", "url" => "/admin/role"],
+            ["title" => "权限列表", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\PermissionController@index", "url" => "/admin/permission"],
         ],
     ],
 ];
