@@ -1,8 +1,8 @@
 <?php
 /** .-------------------------------------------------------------------
- * |      Site: www.hdcms.com  www.houdunren.com
- * |      Date: 2018/7/7 下午3:51
- * |    Author: 向军大叔 <2300071698@qq.com>
+ * |      Site: www.zhouzy365.com
+ * |      Date: 2019/9/10 下午3:13
+ * |    Author: zzy <348858954@qq.com>
  * '-------------------------------------------------------------------*/
 
 namespace Zzy\Module\Exceptions;
@@ -21,7 +21,7 @@ class PermissionDenyException extends \Exception
         if (request()->expectsJson()) {
             return ['code' => 401, 'message' => $this->message];
         }
-        session()->flash('danger', $this->getMessage());
+        session()->flash('error', $this->getMessage());
 
         return redirect()->back();
     }
