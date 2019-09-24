@@ -7,6 +7,7 @@
 /**
  * 权限配置
  * 为了避免其他模块有同名的权限，权限标识要以 '控制器@方法' 开始
+ * 资源路由控制器增删改查全有@index控制
  */
 return [
     [
@@ -19,9 +20,6 @@ return [
             ['title' => '邮箱配置', 'name' => 'AdminController@email', 'guard_name' => 'admin'],
             ['title' => '友情链接', 'name' => 'AdminController@link', 'guard_name' => 'admin'],
             ['title' => '后台菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@index', 'guard_name' => 'admin'],
-            ['title' => '添加菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@create', 'guard_name' => 'admin'],
-            ['title' => '编辑菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@edit', 'guard_name' => 'admin'],
-            ['title' => '删除菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@destroy', 'guard_name' => 'admin'],
         ],
     ],
     [
@@ -33,15 +31,9 @@ return [
             ['title' => '管理员列表', 'name' => 'PermissionController@user_list', 'guard_name' => 'admin'],
             ['title' => '管理员日志', 'name' => 'PermissionController@log', 'guard_name' => 'admin'],
             ['title' => '角色管理', 'name' => 'Modules\Admin\Http\Controllers\RoleController@index', 'guard_name' => 'admin'],
-            ['title' => '添加角色', 'name' => 'Modules\Admin\Http\Controllers\RoleController@create', 'guard_name' => 'admin'],
-            ['title' => '修改角色', 'name' => 'Modules\Admin\Http\Controllers\RoleController@edit', 'guard_name' => 'admin'],
-            ['title' => '删除角色', 'name' => 'Modules\Admin\Http\Controllers\RoleController@destroy', 'guard_name' => 'admin'],
             ['title' => '查看角色权限', 'name' => 'Modules\Admin\Http\Controllers\RoleController@permission', 'guard_name' => 'admin'],
             ['title' => '修改角色权限', 'name' => 'Modules\Admin\Http\Controllers\RoleController@permissionStore', 'guard_name' => 'admin'],
             ['title' => '权限列表', 'name' => 'Modules\Admin\Http\Controllers\PermissionController@index', 'guard_name' => 'admin'],
-            ['title' => '添加权限', 'name' => 'Modules\Admin\Http\Controllers\PermissionController@create', 'guard_name' => 'admin'],
-            ['title' => '修改权限', 'name' => 'Modules\Admin\Http\Controllers\PermissionController@edit', 'guard_name' => 'admin'],
-            ['title' => '删除权限', 'name' => 'Modules\Admin\Http\Controllers\PermissionController@destroy', 'guard_name' => 'admin'],
         ],
     ],
 ];

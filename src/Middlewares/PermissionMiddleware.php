@@ -79,10 +79,10 @@ class PermissionMiddleware
         $route = Route::getCurrentRoute();
         /**
          * 资源路由处理
-         * 用于 create 与 update使用同一验证规则
+         * 全归增删改查全通过index管理
          */
         if ($resource) {
-            return str_replace(['@store', '@update'], ['@create', '@edit'], $route->action['controller']);
+            return str_replace(['@store', '@update','@create', '@edit', '@destroy'], '@index', $route->action['controller']);
         }
 
         return $route->action['controller'];
