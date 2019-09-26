@@ -28,7 +28,7 @@ return [
         'name' => 'Permission',
         'guard_name' => 'admin',
         'permissions' => [
-            ['title' => '管理员列表', 'name' => 'PermissionController@user_list', 'guard_name' => 'admin'],
+            ['title' => '管理员列表', 'name' => 'Modules\Admin\Http\Controllers\AdminUserController@index', 'guard_name' => 'admin'],
             ['title' => '管理员日志', 'name' => 'PermissionController@log', 'guard_name' => 'admin'],
             ['title' => '角色管理', 'name' => 'Modules\Admin\Http\Controllers\RoleController@index', 'guard_name' => 'admin'],
             ['title' => '查看角色权限', 'name' => 'Modules\Admin\Http\Controllers\RoleController@permission', 'guard_name' => 'admin'],

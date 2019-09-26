@@ -9,6 +9,7 @@ namespace Zzy\Module\Traits;
 
 use Zzy\Module\Models\AdminMenu;
 use Illuminate\Support\Facades\Cache;
+use Zzy\Arr\Arr;
 
 trait MenusService
 {
@@ -19,12 +20,27 @@ trait MenusService
      */
     public function getMenus()
     {
+        $menus = AdminMenu::orderBy('list_order', 'asc')->get()->toArray();
+        $menus = (new Arr())->tree($menus,'title','id','p_id');
+        return $menus;
+    }
+
+    /**
+     * 获取所有菜单(多维数组)
+     *
+     * @return mixed
+     */
+    public function getMenusLevel()
+    {
         $menus = Cache::remember('admin.menus', now()->addMinutes(24*60), function () {
-            $where = [
-                ['p_id', '=', '0'],
-            ];
-            $menus = AdminMenu::where($where)->orderBy('list_order', 'asc')->get();
-            $menus = $this->getChildMenus($menus);
+            // $where = [
+            //     ['p_id', '=', '0'],
+            // ];
+            // $menus = AdminMenu::where($where)->orderBy('list_order', 'asc')->get();
+            // $menus = $this->getChildMenus($menus);
+            
+            $menus = AdminMenu::orderBy('list_order', 'asc')->get()->toArray();
+            $menus = (new Arr())->treeLevel($menus,'title','id','p_id');
             return $menus;
         });
         return $menus;

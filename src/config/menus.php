@@ -33,7 +33,7 @@ return [
         'permission' => 'Permission',
         "url" => "链接地址",
         "menus"      => [
-            ["title" => "管理员列表", "icon"=> "fa fa-navicon", "permission" => "PermissionController@user_list", "url" => "链接地址"],
+            ["title" => "管理员列表", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\AdminUserController@index", "url" => "链接地址"],
             ["title" => "管理员日志", "icon"=> "fa fa-navicon", "permission" => "PermissionController@log", "url" => "链接地址"],
             ["title" => "角色管理", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\RoleController@index", "url" => "/admin/role"],
             ["title" => "权限列表", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\PermissionController@index", "url" => "/admin/permission"],

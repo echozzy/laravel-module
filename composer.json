@@ -5,7 +5,8 @@
     "require": {
         "php": "^7.1.3",
         "echozzy/upd-laravel-modules": "^1.0.0",
-        "spatie/laravel-permission": "^3.0"
+        "spatie/laravel-permission": "^3.0",
+        "echozzy/array-tree": "^1.0"
     },
     "license": "MIT",
     "authors": [
