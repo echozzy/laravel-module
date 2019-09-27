@@ -33,12 +33,6 @@ trait MenusService
     public function getMenusLevel()
     {
         $menus = Cache::remember('admin.menus', now()->addMinutes(24*60), function () {
-            // $where = [
-            //     ['p_id', '=', '0'],
-            // ];
-            // $menus = AdminMenu::where($where)->orderBy('list_order', 'asc')->get();
-            // $menus = $this->getChildMenus($menus);
-            
             $menus = AdminMenu::orderBy('list_order', 'asc')->get()->toArray();
             $menus = (new Arr())->treeLevel($menus,'title','id','p_id');
             return $menus;
@@ -74,12 +68,6 @@ trait MenusService
                 // 无限级
                 $menus[$key]['children'] = $this->getChildMenus($child_menus);;
                 
-                // 二级
-                // 列表展示需要children
-                // foreach ($child_menus as $k => $value) {
-                //     $child_menus[$k]['children']= '';
-                // }
-                // $menus[$key]['children'] = $child_menus;
             }else{
                 $menus[$key]['children'] = '';
             }
