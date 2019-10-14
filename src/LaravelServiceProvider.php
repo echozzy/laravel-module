@@ -43,7 +43,7 @@ class LaravelServiceProvider extends ServiceProvider
             __DIR__.'/Migrations/create_menu_tables.php.stub' =>  $this->getMigrationFileName($filesystem),
         ], 'migrations');
 
-        $this->loadMigrationsFrom(__DIR__.'/Migrations');
+        // $this->loadMigrationsFrom(__DIR__.'/Migrations');
     }
 
     /**
