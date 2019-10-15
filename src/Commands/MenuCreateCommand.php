@@ -4,6 +4,7 @@ namespace Zzy\Module\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use Zzy\Module\Models\AdminMenu;
 
 /**
@@ -42,6 +43,7 @@ class MenuCreateCommand extends Command
                 $this->error("{$module} menus install fail");
             }
         }
+        Cache::forget('admin.menus');
     }
 
     /**
