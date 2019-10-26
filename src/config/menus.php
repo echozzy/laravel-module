@@ -22,9 +22,9 @@ return [
         'permission' => 'AdminController',
         "url" => "链接地址",
         "menus"      => [
-            ["title" => "网站信息", "icon"=> "fa fa-navicon","permission" => "AdminController@config", "url" => "链接地址"],
-            ["title" => "邮箱配置", "icon"=> "fa fa-navicon","permission" => "AdminController@email", "url" => "链接地址"],
-            ["title" => "友情链接", "icon"=> "fa fa-navicon","permission" => "AdminController@link", "url" => "链接地址"],
+            ["title" => "网站信息", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\SettingController@edit", "url" => "/admin/setting"],
+            ["title" => "邮箱配置", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\MenuController@edit", "url" => "/admin/mailer"],
+            ["title" => "友情链接", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\LinksController@index", "url" => "/admin/links"],
             ["title" => "后台菜单", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\MenuController@index", "url" => "/admin/menu"],
         ],
     ],
@@ -36,10 +36,9 @@ return [
         "url" => "链接地址",
         "menus"      => [
             ["title" => "管理员列表", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\AdminUserController@index", "url" => "/admin/admin_user"],
-            ["title" => "管理员日志", "icon"=> "fa fa-navicon", "permission" => "PermissionController@log", "url" => "链接地址"],
+            ["title" => "管理员日志", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\AdminOperationLogController@index", "url" => "/admin/admin_operation_log"],
             ["title" => "角色管理", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\RoleController@index", "url" => "/admin/role"],
             ["title" => "权限列表", "icon"=> "fa fa-navicon", "permission" => "Modules\Admin\Http\Controllers\PermissionController@index", "url" => "/admin/permission"],
         ],
     ],
 ];
-
