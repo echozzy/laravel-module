@@ -17,7 +17,7 @@ return [
         'guard_name' => 'admin',
         'permissions' => [
             ['title' => '网站信息', 'name' => 'Modules\Admin\Http\Controllers\SettingController@edit', 'guard_name' => 'admin'],
-            ['title' => '邮箱配置', 'name' => 'Modules\Admin\Http\Controllers\MenuController@edit', 'guard_name' => 'admin'],
+            ['title' => '邮箱配置', 'name' => 'Modules\Admin\Http\Controllers\MailerController@edit', 'guard_name' => 'admin'],
             ['title' => '友情链接', 'name' => 'Modules\Admin\Http\Controllers\LinksController@index', 'guard_name' => 'admin'],
             ['title' => '后台菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@index', 'guard_name' => 'admin'],
         ],
