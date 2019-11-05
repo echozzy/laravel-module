@@ -24,6 +24,7 @@ return [
         "menus"      => [
             ["title" => "网站信息", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\SettingController@edit", "url" => "/admin/setting"],
             ["title" => "邮箱配置", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\MailerController@edit", "url" => "/admin/mailer"],
+            ["title" => "短信配置", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\SmsSettingController@index", "url" => "/admin/sms"],
             ["title" => "友情链接", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\LinksController@index", "url" => "/admin/links"],
             ["title" => "后台菜单", "icon"=> "fa fa-navicon","permission" => "Modules\Admin\Http\Controllers\MenuController@index", "url" => "/admin/menu"],
         ],

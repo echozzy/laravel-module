@@ -18,6 +18,8 @@ return [
         'permissions' => [
             ['title' => '网站信息', 'name' => 'Modules\Admin\Http\Controllers\SettingController@edit', 'guard_name' => 'admin'],
             ['title' => '邮箱配置', 'name' => 'Modules\Admin\Http\Controllers\MailerController@edit', 'guard_name' => 'admin'],
+            ['title' => '短信配置', 'name' => 'Modules\Admin\Http\Controllers\SmsSettingController@index', 'guard_name' => 'admin'],
+            ['title' => '设置短信默认发送平台', 'name' => 'Modules\Admin\Http\Controllers\SmsSettingController@setSmsDefault', 'guard_name' => 'admin'],
             ['title' => '友情链接', 'name' => 'Modules\Admin\Http\Controllers\LinksController@index', 'guard_name' => 'admin'],
             ['title' => '后台菜单', 'name' => 'Modules\Admin\Http\Controllers\MenuController@index', 'guard_name' => 'admin'],
         ],
