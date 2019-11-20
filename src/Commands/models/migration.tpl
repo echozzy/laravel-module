@@ -4,12 +4,12 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateArticlesTable extends Migration
+class Create{MIGRATION}Table extends Migration
 {
     //提交
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('{SNAKE_MIGRATION}', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('cat_id')->comment('文章分类ID');
             $table->string('title','150')->comment('标题');
@@ -31,6 +31,6 @@ class CreateArticlesTable extends Migration
     //回滚
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('{SNAKE_MIGRATION}');
     }
 }
