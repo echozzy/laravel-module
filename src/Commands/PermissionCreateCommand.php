@@ -104,7 +104,27 @@ class PermissionCreateCommand extends Command
                     return false;
                 }
             }else{
-                return false;
+                $child_permissions = empty($group['permissions']) ? '' : $group['permissions'];
+                if ($child_permissions) {
+                    $where = [
+                        ['name', '=', $group['name']],
+                        ['guard_name', '=', $group['guard_name']],
+                    ];
+                    $parent = Permission::where($where)->first();
+                    $p_id = $parent->id;
+                    foreach ($child_permissions as $key => $value) {
+                        if ($this->permissionIsExists($value)) {
+                            unset($child_permissions[$key]);
+                        }else{
+                            $child_permissions[$key]['p_id'] = $p_id;
+                        }
+                    }
+                }
+                if($child_permissions){
+                    $this->insert_permission($child_permissions);
+                }else{
+                    return false;
+                }
             }
         }
         return true;

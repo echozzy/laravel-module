@@ -47,7 +47,7 @@ class MenuCreateCommand extends Command
     }
 
     /**
-     * 检查权限标识
+     * 检查菜单是否存在
      *
      * @param array $permission
      *
@@ -89,6 +89,7 @@ class MenuCreateCommand extends Command
     {
         foreach ((array) $groups as $group) {
             if (!$this->menusIsExists($group)) {
+                // 菜单不存在，插入菜单
                 $child_menus = empty($group['menus']) ? '' : $group['menus'];
                 if (isset($group['menus'])) {
                     unset($group['menus']);
@@ -106,7 +107,25 @@ class MenuCreateCommand extends Command
                     return false;
                 }
             }else{
-                return false;
+                // 菜单存在，插入子菜单
+                $child_menus = empty($group['menus']) ? '' : $group['menus'];
+                if ($child_menus) {
+                    $parent = AdminMenu::where('title',$group['title'])->first();
+                    $p_id = $parent->id;
+                    // 遍历需要插入的新子菜单
+                    foreach ($child_menus as $key => $value) {
+                        if ($this->menusIsExists($value)) {
+                            unset($child_menus[$key]);
+                        }else{
+                            $child_menus[$key]['p_id'] = $p_id;
+                        }
+                    }
+                }
+                if($child_menus){
+                    $this->insert_menus($child_menus);
+                }else{
+                    return false;
+                }
             }
         }
         return true;
