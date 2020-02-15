@@ -122,8 +122,6 @@ class PermissionCreateCommand extends Command
                 }
                 if($child_permissions){
                     $this->insert_permission($child_permissions);
-                }else{
-                    return false;
                 }
             }
         }

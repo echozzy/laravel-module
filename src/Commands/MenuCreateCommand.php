@@ -123,8 +123,6 @@ class MenuCreateCommand extends Command
                 }
                 if($child_menus){
                     $this->insert_menus($child_menus);
-                }else{
-                    return false;
                 }
             }
         }
